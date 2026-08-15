@@ -31,10 +31,10 @@ namespace RMQ {
         static_assert(std::is_invocable_r_v<t, calculatorFuc, t, t>,
             "calculatorFuc must be callable as t(t, t)");
 
-        sparseTable(const std::vector<t>& items, calculatorFuc calculator) {
+        sparseTable(const std::vector<t>& items, calculatorFuc calculator) :func(calculator) {
 
-            func = calculator;
-
+            if (n == 0)
+                return;
             n = items.size();
 
             maxLog = log2(n) + 1;
