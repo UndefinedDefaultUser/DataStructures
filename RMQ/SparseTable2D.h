@@ -50,7 +50,12 @@ namespace RMQ {
 				return;
 
 			maxLogN = log2(n) + 1;
+			
 			m = matrix[n - 1].size();
+
+			if (m == 0)
+				return;
+
 			maxLogM = log2(m) + 1;
 
 			table = std::vector<t>(n * maxLogN * m * maxLogM);
@@ -120,11 +125,4 @@ namespace RMQ {
 			);
 		}
 	};
-
-
-
-
-
-
-	
 }

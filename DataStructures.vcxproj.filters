@@ -18,6 +18,9 @@
     <ClCompile Include="DataStructures.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="RMQ\SparseTable2D.h">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HookBinaryHeap\HookBinaryHeap.h">

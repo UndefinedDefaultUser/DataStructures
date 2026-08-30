@@ -16,7 +16,7 @@ namespace RMQ {
         int maxLog;
 
         int log2(int num) {
-            return max(((int)std::bit_width((uint32_t)num)) - 1, 0);
+            return std::max(((int)std::bit_width((uint32_t)num)) - 1, 0);
         }
 
         t getTableVal(int idx, int power) {
@@ -34,9 +34,10 @@ namespace RMQ {
 
         sparseTable(const std::vector<t>& items, calculatorFuc calculator) :func(calculator) {
 
+            n = items.size();
+
             if (n == 0)
                 return;
-            n = items.size();
 
             maxLog = log2(n) + 1;
 
