@@ -13,18 +13,18 @@ namespace RMQ {
         std::vector<t> table;
 
         int n;
-        int maxLog;
+        int maxLogN;
 
         int log2(int num) {
             return std::max(((int)std::bit_width((uint32_t)num)) - 1, 0);
         }
 
         t getTableVal(int idx, int power) {
-            return table[idx * maxLog + power];
+            return table[idx * maxLogN + power];
         }
 
         void setTableVal(int idx, int power, t val) {
-            table[idx * maxLog + power] = val;
+            table[idx * maxLogN + power] = val;
         }
 
     public:
@@ -39,15 +39,15 @@ namespace RMQ {
             if (n == 0)
                 return;
 
-            maxLog = log2(n) + 1;
+            maxLogN = log2(n) + 1;
 
-            table = std::vector<t>(n * maxLog);
+            table = std::vector<t>(n * maxLogN);
 
             for (int i = 0; i < n; i++) {
                 setTableVal(i, 0, items[i]);
             }
 
-            for (int power = 1; power < maxLog; power++) {
+            for (int power = 1; power < maxLogN; power++) {
                 for (int i = 0; i + (1 << power) - 1 < n; i++) {
                     setTableVal(
                         i, power,
