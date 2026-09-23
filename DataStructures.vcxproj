@@ -132,6 +132,7 @@
     <ClCompile Include="RMQ\SparseTable2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BIT\BIT.h" />
     <ClInclude Include="HookBinaryHeap\HookBinaryHeap.h" />
     <ClInclude Include="RMQ\SparseTable.h" />
   </ItemGroup>
