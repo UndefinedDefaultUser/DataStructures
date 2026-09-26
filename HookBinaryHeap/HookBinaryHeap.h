@@ -104,7 +104,7 @@ namespace HookBinaryHeap
 		void pop() {
 			if (items.size() > 1)
 			{
-				onSwapBefore(items[size() - 1], idx);
+				onSwapBefore(items[size() - 1], 0);
 				onPopBefore(items[0], 0);
 				std::swap(items.front(),items.back());
 				items.pop_back();

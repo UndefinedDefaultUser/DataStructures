@@ -10,8 +10,8 @@ namespace fenwick {
     public:
         BIT(size_t size) : tree(std::vector<int64_t>(size + 1, 0)) {};
 
-        //query [l,r] sum
-        int64_t query(int l, int r) { return query(r) - query(l - 1); }
+        //query [l,r) sum
+        int64_t query(int l, int r) { return query(r) - query(l); }
 
         //query [0,r) sum
         int64_t query(int r) {
