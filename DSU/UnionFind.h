@@ -3,8 +3,8 @@
 
 namespace DSU {
 	class UnionFind {
-		std::vector<int> items;
-		std::vector<int> ranks;
+		std::vector<size_t> items;
+		std::vector<size_t> ranks;
 
 	public:
 		UnionFind() {}
@@ -17,7 +17,7 @@ namespace DSU {
 			reset();
 		}
 
-		int find(size_t idx) {
+		size_t find(size_t idx) {
 			if (idx >= items.size())
 				return -1;
 
