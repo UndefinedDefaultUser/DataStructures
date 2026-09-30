@@ -10,3 +10,4 @@
 | 稀疏表 (Sparse Table) | `RMQ/SparseTable.h` | 静态 RMQ，O(1) 查询 |
 | 二维稀疏表 | `RMQ/SparseTable2D.h` | 二维静态 RMQ |
 | 钩子二叉堆 | `HookBinaryHeap/HookBinaryHeap.h` | 支持自定义回调、索引更新、删除 |
+| DSU | `DSU/UnionFind.h` | 并查集，集成按秩合并&路径压缩 |
