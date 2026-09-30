@@ -17,8 +17,8 @@ namespace DSU {
 			reset();
 		}
 
-		int find(int idx) {
-			if (idx >= items.size() || idx < 0)
+		int find(size_t idx) {
+			if (idx >= items.size())
 				return -1;
 
 			if (items[idx] == idx)
@@ -28,9 +28,9 @@ namespace DSU {
 			return items[idx];
 		}
 
-		bool unionItem(int a, int b) {
+		bool unionItem(size_t a, size_t b) {
 
-			if (a >= items.size() || a < 0 || b >= items.size() || b < 0)
+			if (a >= items.size() || b >= items.size() )
 				return 0;
 
 			int pa = find(a);
