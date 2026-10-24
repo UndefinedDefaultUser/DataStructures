@@ -91,6 +91,16 @@ namespace HookBinaryHeap
 		heap(compFunc comp, onSwapBeforeFunc onSwapBefore, onPopBeforeFunc onPopBefore)
 			: comp(comp), onSwapBefore(onSwapBefore), onPopBefore(onPopBefore) {}
 
+		heap(std::vector<t>&& container, compFunc comp, onSwapBeforeFunc onSwapBefore, onPopBeforeFunc onPopBefore)
+			: items(std::move(container), comp(comp), onSwapBefore(onSwapBefore), onPopBefore(onPopBefore) {
+
+			int n = items.size();
+			for (int i = (n - 1) / 2; i >= 0; i--)
+			{
+				check_down(i);
+			}
+		}
+
 		void insert(t val)
 		{
 
@@ -106,7 +116,7 @@ namespace HookBinaryHeap
 			{
 				onSwapBefore(items[size() - 1], 0);
 				onPopBefore(items[0], 0);
-				std::swap(items.front(),items.back());
+				std::swap(items.front(), items.back());
 				items.pop_back();
 				check_down(0);
 			}
@@ -168,6 +178,13 @@ namespace HookBinaryHeap
 
 	struct heapMaker
 	{
+		template <typename T, typename Comp, typename OnSwapBefore = NoOp,
+			typename OnPopBefore = NoOp>
+		static heap<T, Comp, OnSwapBefore, OnPopBefore> make_heap(std::vector<T>&& container, Comp comp, OnSwapBefore onSwapBefore = {},
+			OnPopBefore onPopBefore = {})
+		{
+			return heap<T, Comp, OnSwapBefore, OnPopBefore>(std::move(container), comp, onSwapBefore, onPopBefore);
+		}
 
 		template <typename T, typename Comp, typename OnSwapBefore = NoOp,
 			typename OnPopBefore = NoOp>
@@ -176,5 +193,7 @@ namespace HookBinaryHeap
 		{
 			return heap<T, Comp, OnSwapBefore, OnPopBefore>(comp, onSwapBefore, onPopBefore);
 		}
+
+
 	};
 }
