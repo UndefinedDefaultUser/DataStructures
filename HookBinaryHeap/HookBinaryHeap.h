@@ -92,13 +92,26 @@ namespace HookBinaryHeap
 			: comp(comp), onSwapBefore(onSwapBefore), onPopBefore(onPopBefore) {}
 
 		heap(std::vector<t>&& container, compFunc comp, onSwapBeforeFunc onSwapBefore, onPopBeforeFunc onPopBefore)
-			: items(std::move(container), comp(comp), onSwapBefore(onSwapBefore), onPopBefore(onPopBefore) {
+			: items(std::move(container)), comp(comp), onSwapBefore(onSwapBefore), onPopBefore(onPopBefore) {
 
 			int n = items.size();
 			for (int i = (n - 1) / 2; i >= 0; i--)
 			{
 				check_down(i);
 			}
+		}
+
+		std::vector<t>&& sort()
+		{
+
+			for (int i = 0; i < size(); i++)
+			{
+				onSwapBefore(items[size() - i - 1], 0);
+				onPopBefore(items[0], 0);
+				std::swap(items[size() - i - 1], items[0]);
+				check_down(0, size() - i - 1);
+			}
+			return std::move(items);
 		}
 
 		void insert(t val)
